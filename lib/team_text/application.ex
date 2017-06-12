@@ -12,6 +12,10 @@ defmodule TeamText.Application do
     children = [
       # Starts a worker by calling: TeamText.Worker.start_link(arg1, arg2, arg3)
       # worker(TeamText.Worker, [arg1, arg2, arg3]),
+      # TODO: Decide on auth. Part of a Phoenix web layer? Roll your own?
+      worker(TeamText.Router, []),
+      supervisor(TeamText.ProjectManagement.Supervisor, []),
+      supervisor(TeamText.ProjectState.Supervisor, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
